@@ -7,8 +7,6 @@ import CountryPicker from 'rn-country-dropdown-picker';
 import ButtonComp from '@/src/components/ButtonComp';
 import countryCodes from '@/src/constants/countryCodes';
 import { router } from 'expo-router';
-import { useContext } from 'react';
-import { PhoneContext } from '@/src/context/PhoneContext';
 
 
 

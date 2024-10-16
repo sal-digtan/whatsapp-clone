@@ -29,6 +29,35 @@ const VerifyOtp = () => {
         router.push("/(auth)/login")
     }
 
+    const [resendCode, setResendCode] = useState(60)
+    const resendRef = useRef(resendCode);
+
+    const [showResend, setShowResend] = useState(false)
+
+    const [showTime, setShowTime] = useState(true)
+
+    const resendCodeAgain = () => {
+        const timerResend = setInterval(() => {
+            resendRef.current -= 1;
+            if (resendRef.current < 0) {
+                clearInterval(timerResend);
+            } else {
+                setResendCode(resendRef.current);
+            }
+        }, 1000);
+        return () => {
+            clearInterval(timerResend);
+        };
+    }
+
+    // useEffect(() => {
+    //     resendCodeAgain()
+    // }, [])
+
+    const [verifyBtnStyle, setVerifyBtnStyle] = useState("rgba(0,0,0,0.44)")
+
+    const [OtpText, setOtpText] = useState("")
+
     return (
         <View style={styles.container_main}>
             <View style={styles.header}>
@@ -43,13 +72,22 @@ const VerifyOtp = () => {
                     <View style={styles.inputcode_container}>
                         {[1, 2, 3, 4].map((item, index) =>
                             <View key={index}>
-                                <TextInput keyboardType='numeric' maxLength={1} style={styles.input_code} />
+                                <TextInput keyboardType='numeric' maxLength={1} style={styles.input_code} onChangeText={(e) => { setVerifyBtnStyle("#000"); setOtpText(e) }} />
                             </View>)}
                     </View>
-                    <Text style={styles.resend_text}>Resend Code in <Text style={styles.seconds_text}>{time}</Text> s</Text>
+                    {showTime && time > 0 ?
+                        <Text style={styles.resend_text}>Resend Code in <Text style={styles.seconds_text}>{time}</Text> s</Text>
+                        :
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => { resendCodeAgain(); setShowResend(true); setShowTime(false) }}>
+                            {showResend && resendCode > 0 ?
+                                <Text style={styles.resend_text}>Resend Code in <Text style={styles.seconds_text}>{resendCode}</Text> s</Text>
+                                : <Text style={styles.resend_again}>Resend Code</Text>
+                            }
+                        </TouchableOpacity>
+                    }
                 </View>
                 <View style={styles.footer}>
-                    <ButtonComp title="Verify" style={styles.verify_btn} />
+                    <ButtonComp title="Verify" style={[OtpText === "" ? styles.disable_verifybtn : styles.verify_btn]} />
                 </View>
             </View>
         </View>
@@ -101,6 +139,13 @@ const styles = StyleSheet.create({
         paddingVertical: moderateScale(15),
         marginBottom: moderateScale(15),
     },
+    disable_verifybtn: {
+        width: scale(300),
+        backgroundColor: "rgba(0,0,0,0.44)",
+        borderRadius: moderateScale(25),
+        paddingVertical: moderateScale(15),
+        marginBottom: moderateScale(15),
+    },
     input_code: {
         borderBlockColor: "#000",
         height: verticalScale(68),
@@ -120,7 +165,11 @@ const styles = StyleSheet.create({
     },
     seconds_text: {
         color: "#00A884"
-    }
+    },
+    resend_again: {
+        marginTop: moderateScale(57),
+        color: "#00A884",
+    },
 })
 
 export default VerifyOtp
