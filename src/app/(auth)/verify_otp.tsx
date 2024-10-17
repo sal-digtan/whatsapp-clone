@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Modal, ActivityIndicator } from 'react-native'
 import React, { useRef, useEffect, useState } from 'react'
 import imagesPath from '@/src/constants/imagesPath'
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
@@ -76,6 +76,31 @@ const VerifyOtp = () => {
     console.log(OtpText.join(""));
     console.log(TestOtpCode);
 
+    // modal
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const navigateMain = () => {
+        if (OtpText.join("") === TestOtpCode && OtpText.join("") !== "") {
+            router.push("/(main)/")
+        }
+    }
+
+    const modalTimer = () => {
+        if (OtpText.join("") === TestOtpCode && OtpText.join("") !== "") {
+            setModalVisible(true)
+            setTimeout(navigateMain, 3000)
+        } else {
+            setModalVisible(false)
+        }
+    }
+
+    useEffect(() => {
+        const timeout = setTimeout(modalTimer, 3000);
+        return () => {
+            clearTimeout(timeout)
+        }
+    }, [])
+
     return (
         <View style={styles.container_main}>
             <View style={styles.header}>
@@ -113,7 +138,24 @@ const VerifyOtp = () => {
                     }
                 </View>
                 <View style={styles.footer}>
-                    <ButtonComp title="Verify" style={[OtpText === "" ? styles.disable_verifybtn : styles.verify_btn]} onPress={showToast} />
+                    <ButtonComp title="Verify" style={[OtpText.join("") === "" ? styles.disable_verifybtn : styles.verify_btn]} onPress={showToast} />
+                    {/* modal */}
+                    <View style={styles.centeredView}>
+                        <Modal
+                            animationType="slide"
+                            transparent={true}
+                            visible={modalVisible}
+                            onDismiss={modalTimer}
+                            onRequestClose={() => {
+                                modalTimer;
+                            }}>
+                            <View style={styles.centeredView}>
+                                <View style={styles.modalView}>
+                                    <ActivityIndicator size="large" color="#00F2AA" />
+                                </View>
+                            </View>
+                        </Modal>
+                    </View>
                 </View>
             </View>
         </View>
@@ -206,6 +248,30 @@ const styles = StyleSheet.create({
     wrongcode_text: {
         color: "#DA1414",
         paddingStart: moderateScale(10),
+    },
+    // modal
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 22,
+        backgroundColor: '#535861',
+        opacity: 0.72,
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
     },
 
 })
