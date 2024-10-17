@@ -56,7 +56,25 @@ const VerifyOtp = () => {
 
     const [verifyBtnStyle, setVerifyBtnStyle] = useState("rgba(0,0,0,0.44)")
 
-    const [OtpText, setOtpText] = useState("")
+    const [OtpText, setOtpText] = useState([""])
+
+    const [wrongCode, setwrongCode] = useState(false)
+
+    let TestOtpCode = "4789"
+
+    const showToast = () => {
+        if (OtpText.join("") !== TestOtpCode && OtpText.join("") !== "") {
+            setwrongCode(true)
+        } else {
+            setwrongCode(false)
+        }
+    }
+    console.log(OtpText === TestOtpCode.split(""))
+    console.log(OtpText !== TestOtpCode.split(""))
+    console.log(OtpText);
+    console.log(TestOtpCode.split(""));
+    console.log(OtpText.join(""));
+    console.log(TestOtpCode);
 
     return (
         <View style={styles.container_main}>
@@ -72,9 +90,17 @@ const VerifyOtp = () => {
                     <View style={styles.inputcode_container}>
                         {[1, 2, 3, 4].map((item, index) =>
                             <View key={index}>
-                                <TextInput keyboardType='numeric' maxLength={1} style={styles.input_code} onChangeText={(e) => { setVerifyBtnStyle("#000"); setOtpText(e) }} />
+                                <TextInput keyboardType='numeric' maxLength={1} style={styles.input_code} onChangeText={(e) => { setVerifyBtnStyle("#000"); setOtpText((prev) => [...prev, e]); }} />
                             </View>)}
+
                     </View>
+                    {wrongCode ?
+                        <View style={styles.wrongcode_container}>
+                            <Text style={styles.wrongcode_text}><Image source={imagesPath.error_icon} resizeMode='contain' /> Invalid password</Text>
+                        </View>
+                        :
+                        ""
+                    }
                     {showTime && time > 0 ?
                         <Text style={styles.resend_text}>Resend Code in <Text style={styles.seconds_text}>{time}</Text> s</Text>
                         :
@@ -87,7 +113,7 @@ const VerifyOtp = () => {
                     }
                 </View>
                 <View style={styles.footer}>
-                    <ButtonComp title="Verify" style={[OtpText === "" ? styles.disable_verifybtn : styles.verify_btn]} />
+                    <ButtonComp title="Verify" style={[OtpText === "" ? styles.disable_verifybtn : styles.verify_btn]} onPress={showToast} />
                 </View>
             </View>
         </View>
@@ -170,6 +196,18 @@ const styles = StyleSheet.create({
         marginTop: moderateScale(57),
         color: "#00A884",
     },
+    wrongcode_container: {
+        width: scale(300),
+        marginTop: verticalScale(22),
+        backgroundColor: "#F8DADA",
+        paddingVertical: verticalScale(10),
+        borderRadius: moderateScale(25),
+    },
+    wrongcode_text: {
+        color: "#DA1414",
+        paddingStart: moderateScale(10),
+    },
+
 })
 
 export default VerifyOtp
