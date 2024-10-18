@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, ActivityIndicator, Modal } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import imagesPath from '@/src/constants/imagesPath';
 import { Menu, MenuItem } from 'react-native-material-menu';
@@ -7,6 +7,7 @@ import CountryPicker from 'rn-country-dropdown-picker';
 import ButtonComp from '@/src/components/ButtonComp';
 import countryCodes from '@/src/constants/countryCodes';
 import { router } from 'expo-router';
+import { PhoneContext } from '../../context/PhoneContext';
 
 
 
@@ -22,9 +23,9 @@ const Login = () => {
 
     const [phoneNumber, setPhoneNumber] = useState("")
 
-    // const { setCountry_Code, setPhone_Number } = useContext(PhoneContext)
+    const { setCountry_Code, setPhone_Number }: any = useContext(PhoneContext)
 
-    function handleSelection(e) {
+    function handleSelection(e: any) {
         console.log(e);
         setCountryCode(e.country)
         // setCountry_Code(e.country)

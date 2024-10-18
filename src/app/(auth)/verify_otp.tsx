@@ -5,7 +5,7 @@ import { moderateScale, scale, verticalScale } from 'react-native-size-matters'
 import ButtonComp from '@/src/components/ButtonComp'
 import { router } from 'expo-router'
 
-const VerifyOtp = () => {
+const VerifyOtp = ({ country_Code, phone_Number }: any) => {
 
 
     const [time, setTime] = useState(60);
@@ -111,7 +111,7 @@ const VerifyOtp = () => {
             </View>
             <View style={styles.container_mid}>
                 <View style={styles.body}>
-                    <Text style={styles.info_text}>Code has been send to +91 11******44</Text>
+                    <Text style={styles.info_text}>Code has been send to {[country_Code, phone_Number]}</Text>
                     <View style={styles.inputcode_container}>
                         {[1, 2, 3, 4].map((item, index) =>
                             <View key={index}>
@@ -138,24 +138,24 @@ const VerifyOtp = () => {
                     }
                 </View>
                 <View style={styles.footer}>
-                    <ButtonComp title="Verify" style={[OtpText.join("") === "" ? styles.disable_verifybtn : styles.verify_btn]} onPress={showToast} />
-                    {/* modal */}
-                    <View style={styles.centeredView}>
-                        <Modal
-                            animationType="slide"
-                            transparent={true}
-                            visible={modalVisible}
-                            onDismiss={modalTimer}
-                            onRequestClose={() => {
-                                modalTimer;
-                            }}>
-                            <View style={styles.centeredView}>
-                                <View style={styles.modalView}>
-                                    <ActivityIndicator size="large" color="#00F2AA" />
-                                </View>
+                    <ButtonComp title="Verify" style={[OtpText.join("") === "" ? styles.disable_verifybtn : styles.verify_btn]} onPress={() => { showToast(); modalTimer() }} />
+                </View>
+                {/* modal */}
+                <View style={styles.centeredView}>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        onDismiss={modalTimer}
+                        onRequestClose={() => {
+                            modalTimer;
+                        }}>
+                        <View style={styles.centeredView}>
+                            <View style={styles.modalView}>
+                                <ActivityIndicator size="large" color="#00F2AA" />
                             </View>
-                        </Modal>
-                    </View>
+                        </View>
+                    </Modal>
                 </View>
             </View>
         </View>
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "space-between",
         backgroundColor: "#fff",
-        gap: moderateScale(232),
+        gap: verticalScale(232),
         width: "100%"
     },
     container_mid: {

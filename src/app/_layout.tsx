@@ -7,10 +7,10 @@ import { PhoneContext } from '../context/PhoneContext';
 
 SplashScreen.preventAutoHideAsync();
 
-const RootLayout = () => {
-    const [country_Code, setCountry_Code] = useState("")
+const RootLayout = (props: any) => {
+    const [country_Code, setCountry_Code] = useState<any>("")
 
-    const [phone_Number, setPhone_Number] = useState("")
+    const [phone_Number, setPhone_Number] = useState<any>("")
 
     console.log(country_Code, phone_Number);
 
@@ -36,11 +36,12 @@ const RootLayout = () => {
 
     return (
         <>
-            {/* <PhoneContext value={{ setCountry_Code, setPhone_Number }}> */}
+            {/* <PhoneContext.Provider value={{ country_Code, phone_Number, setCountry_Code, setPhone_Number }}> */}
+            {/* {props.childern} */}
             <Stack screenOptions={{ headerShown: false }} />
             {isLogin ? <Redirect href={"/(main)"} />
                 : <Redirect href={"/(auth)"} />}
-            {/* </PhoneContext> */}
+            {/* </PhoneContext.Provider> */}
         </>
     )
 }

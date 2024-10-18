@@ -1,3 +1,3 @@
 import { createContext } from "react"
 
-export const PhoneContext = createContext("");
+export const PhoneContext = createContext({});
