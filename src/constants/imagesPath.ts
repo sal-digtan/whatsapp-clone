@@ -5,4 +5,5 @@ export default {
     kebab_menu: require("@/src/assets/images/kebab-menu.png"),
     back_arrow: require("@/src/assets/images/BackArrow.png"),
     error_icon: require("@/src/assets/images/error.png"),
+    search_icon: require("@/src/assets/images/Search.png"),
 }
