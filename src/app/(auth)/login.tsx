@@ -80,7 +80,7 @@ const Login = () => {
                 <View style={styles.country_select}>
                     <CountryPicker
                         InputFieldStyle={styles.ContainerStyle}
-                        DropdownContainerStyle={styles.myDropdownContainerStyle}
+                        // DropdownContainerStyle={styles.myDropdownContainerStyle}
                         DropdownRowStyle={styles.myDropdownRowStyle}
                         Placeholder="Choose your country ..."
                         DropdownCountryTextStyle={styles.myDropdownCountryTextStyle}
