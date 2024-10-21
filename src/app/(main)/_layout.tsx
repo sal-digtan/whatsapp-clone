@@ -3,7 +3,10 @@ import React from 'react'
 
 const MainStack = () => {
     return (
-        <Stack screenOptions={{ headerShown: false }}></Stack>
+        <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name='index' />
+            <Stack.Screen name='chatlist' />
+        </Stack>
     )
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, useWindowDimensions, StyleSheet, Text, Pressable, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, useWindowDimensions, StyleSheet, Text, Pressable, Image, TouchableOpacity, ImageBackground, FlatList } from 'react-native';
 import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Menu, MenuItem } from 'react-native-material-menu';
@@ -9,14 +9,84 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import imagesPath from '@/src/constants/imagesPath';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ButtonComp from '@/src/components/ButtonComp';
-import { router } from 'expo-router';
 
 
-const Main = () => {
+const ChatList = () => {
 
-    const navigateChatList = () => {
-        router.push("/(main)/chatlist")
-    }
+    const chatData = [
+        {
+            id: "1",
+            img: "",
+            person: "Aron",
+            msg: "Lorem ipsum dolor sit",
+            time: "5:27 am",
+            unread_items: "4",
+
+        },
+        {
+            id: "2",
+            img: "",
+            person: "Abelson",
+            msg: "Curabitur finibus dictum nisl, ac sagitt...",
+            time: "Yesterday",
+            unread_items: "",
+
+        },
+        {
+            id: "3",
+            img: "",
+            person: "Cathor",
+            msg: "Photo",
+            time: "5:27 am",
+            unread_items: "",
+
+        },
+        {
+            id: "4",
+            img: "",
+            person: "Steven",
+            msg: "Document.pdf (1 page)",
+            time: "23/06/2022",
+            unread_items: "",
+
+        },
+        {
+            id: "5",
+            img: "",
+            person: "Aron",
+            msg: "Lorem ipsum dolor sit",
+            time: "5:27 am",
+            unread_items: "4",
+
+        },
+        {
+            id: "6",
+            img: "",
+            person: "Aron",
+            msg: "Lorem ipsum dolor sit",
+            time: "5:27 am",
+            unread_items: "4",
+
+        },
+        {
+            id: "7",
+            img: "",
+            person: "Aron",
+            msg: "Lorem ipsum dolor sit",
+            time: "5:27 am",
+            unread_items: "4",
+
+        },
+        {
+            id: "8",
+            img: "",
+            person: "Aron",
+            msg: "Lorem ipsum dolor sit",
+            time: "5:27 am",
+            unread_items: "4",
+
+        },
+    ]
 
     const [visible, setVisible] = useState(false);
 
@@ -25,11 +95,14 @@ const Main = () => {
     const showMenu = () => setVisible(true);
 
     const FirstRoute = () => (
-        <View style={{ flex: 1, backgroundColor: '#fff', alignItems: "center", justifyContent: "center", }}>
-            <ImageBackground source={imagesPath.chat_bg} resizeMode="cover" style={styles.image}></ImageBackground>
-            <Image source={imagesPath.nochatlogo} resizeMode='contain' style={styles.nochat_logo} />
-            <Text style={styles.nochat_text}>You haven’t chat yet</Text>
-            <ButtonComp title="Start Chatting" style={[styles.start_chatbtn, styles.chatbtn_text]} onPress={navigateChatList} />
+        <View style={{ flex: 1, backgroundColor: '#fff', alignItems: "flex-start", justifyContent: "flex-start", }}>
+            <FlatList
+                data={chatData}
+                renderItem={({ item }) => <View>
+                    <Text>{item.person}</Text>
+                </View>}
+                keyExtractor={item => item.id}
+            />
         </View>
     );
 
@@ -38,7 +111,7 @@ const Main = () => {
             <ImageBackground source={imagesPath.chat_bg} resizeMode="cover" style={styles.image}></ImageBackground>
             <Image source={imagesPath.nochatlogo} resizeMode='contain' style={styles.nochat_logo} />
             <Text style={styles.nochat_text}>You haven’t chat yet</Text>
-            <ButtonComp title="Start Chatting" style={[styles.start_chatbtn, styles.chatbtn_text]} onPress={navigateChatList} />
+            <ButtonComp title="Start Chatting" style={[styles.start_chatbtn, styles.chatbtn_text]} />
         </View>
     );
 
@@ -47,7 +120,7 @@ const Main = () => {
             <ImageBackground source={imagesPath.chat_bg} resizeMode="cover" style={styles.image}></ImageBackground>
             <Image source={imagesPath.nochatlogo} resizeMode='contain' style={styles.nochat_logo} />
             <Text style={styles.nochat_text}>You haven’t chat yet</Text>
-            <ButtonComp title="Start Chatting" style={[styles.start_chatbtn, styles.chatbtn_text]} onPress={navigateChatList} />
+            <ButtonComp title="Start Chatting" style={[styles.start_chatbtn, styles.chatbtn_text]} />
         </View>
     );
 
@@ -182,4 +255,6 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Main
+
+
+export default ChatList
