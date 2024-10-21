@@ -7,5 +7,13 @@ export default {
     error_icon: require("@/src/assets/images/error.png"),
     search_icon: require("@/src/assets/images/Search.png"),
     chat_bg: require("@/src/assets/images/chatbg.png"),
-    nochatlogo: require("@/src/assets/images/nochatlogo.png")
+    nochatlogo: require("@/src/assets/images/nochatlogo.png"),
+    chat_person1: require("@/src/assets/images/chat-person1.png"),
+    chat_person2: require("@/src/assets/images/chat-person2.png"),
+    chat_person3: require("@/src/assets/images/chat-person3.png"),
+    chat_person4: require("@/src/assets/images/chat-person4.png"),
+    chat_person5: require("@/src/assets/images/chat-person5.png"),
+    chat_person6: require("@/src/assets/images/chat-person6.png"),
+    chat_person7: require("@/src/assets/images/chat-person7.png"),
+    chat_person8: require("@/src/assets/images/chat-person8.png"),
 }

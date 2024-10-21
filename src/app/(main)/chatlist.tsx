@@ -16,7 +16,7 @@ const ChatList = () => {
     const chatData = [
         {
             id: "1",
-            img: "",
+            img: imagesPath.chat_person1,
             person: "Aron",
             msg: "Lorem ipsum dolor sit",
             time: "5:27 am",
@@ -25,7 +25,7 @@ const ChatList = () => {
         },
         {
             id: "2",
-            img: "",
+            img: imagesPath.chat_person2,
             person: "Abelson",
             msg: "Curabitur finibus dictum nisl, ac sagitt...",
             time: "Yesterday",
@@ -34,7 +34,7 @@ const ChatList = () => {
         },
         {
             id: "3",
-            img: "",
+            img: imagesPath.chat_person3,
             person: "Cathor",
             msg: "Photo",
             time: "5:27 am",
@@ -43,7 +43,7 @@ const ChatList = () => {
         },
         {
             id: "4",
-            img: "",
+            img: imagesPath.chat_person4,
             person: "Steven",
             msg: "Document.pdf (1 page)",
             time: "23/06/2022",
@@ -52,7 +52,7 @@ const ChatList = () => {
         },
         {
             id: "5",
-            img: "",
+            img: imagesPath.chat_person5,
             person: "Aron",
             msg: "Lorem ipsum dolor sit",
             time: "5:27 am",
@@ -61,7 +61,7 @@ const ChatList = () => {
         },
         {
             id: "6",
-            img: "",
+            img: imagesPath.chat_person6,
             person: "Aron",
             msg: "Lorem ipsum dolor sit",
             time: "5:27 am",
@@ -70,7 +70,7 @@ const ChatList = () => {
         },
         {
             id: "7",
-            img: "",
+            img: imagesPath.chat_person7,
             person: "Aron",
             msg: "Lorem ipsum dolor sit",
             time: "5:27 am",
@@ -79,7 +79,7 @@ const ChatList = () => {
         },
         {
             id: "8",
-            img: "",
+            img: imagesPath.chat_person8,
             person: "Aron",
             msg: "Lorem ipsum dolor sit",
             time: "5:27 am",
@@ -98,8 +98,17 @@ const ChatList = () => {
         <View style={{ flex: 1, backgroundColor: '#fff', alignItems: "flex-start", justifyContent: "flex-start", }}>
             <FlatList
                 data={chatData}
-                renderItem={({ item }) => <View>
-                    <Text>{item.person}</Text>
+                renderItem={({ item }) => <View style={styles.chatlist_container}>
+                    <View style={styles.chatimg_container}>
+                        <Image source={item.img} resizeMode='contain' />
+                        <View style={styles.chattext_container}>
+                            <Text>{item.person}</Text>
+                            <Text>{item.msg}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.chattime_container}>
+                        <Text>{item.time}</Text>
+                    </View>
                 </View>}
                 keyExtractor={item => item.id}
             />
@@ -252,7 +261,26 @@ const styles = StyleSheet.create({
     chatbtn_text: {
         fontSize: moderateScale(20),
         fontWeight: "600",
+    },
+    chatlist_container: {
+        flexDirection: "row",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+    },
+    chattext_container: {
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+    },
+    chattime_container: {
+        justifyContent: "flex-end",
+        alignItems: "center",
+    },
+    chatimg_container: {
+        justifyContent: "flex-start",
+        alignItems: "center",
+        flexDirection: "row",
     }
+
 })
 
 
