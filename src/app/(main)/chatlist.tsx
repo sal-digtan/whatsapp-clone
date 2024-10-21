@@ -29,7 +29,7 @@ const ChatList = () => {
             person: "Abelson",
             msg: "Curabitur finibus dictum nisl, ac sagitt...",
             time: "Yesterday",
-            unread_items: "",
+            unread_items: "4",
 
         },
         {
@@ -38,7 +38,7 @@ const ChatList = () => {
             person: "Cathor",
             msg: "Photo",
             time: "5:27 am",
-            unread_items: "",
+            unread_items: "4",
 
         },
         {
@@ -47,7 +47,7 @@ const ChatList = () => {
             person: "Steven",
             msg: "Document.pdf (1 page)",
             time: "23/06/2022",
-            unread_items: "",
+            unread_items: "4",
 
         },
         {
@@ -104,13 +104,25 @@ const ChatList = () => {
                         <View style={styles.chattext_container}>
                             <Text>{item.person}</Text>
                             <View style={styles.msg_container}>
-                                <Image source={imagesPath.blue_tick} resizeMode='contain' />
+                                <Image source={imagesPath.blue_tick} resizeMode='contain' style={{ paddingStart: moderateScale(10) }} />
                                 <Text>{item.msg}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={styles.chattime_container}>
-                        <Text>{item.time}</Text>
+                        <Text style={{ paddingEnd: moderateScale(50) }}>{item.time}</Text>
+                        <View style={{
+                            backgroundColor: "#036A01",
+                            width: moderateScale(22),
+                            height: moderateScale(22),
+                            alignItems: "center",
+                            justifyContent: "center",
+                            borderRadius: moderateScale(22),
+                        }}>
+                            <Text style={{ color: "#000" }}>
+                                {item.unread_items}
+                            </Text>
+                        </View>
                     </View>
                 </View>}
                 keyExtractor={item => item.id}
@@ -183,7 +195,10 @@ const ChatList = () => {
 
     const [index, setIndex] = useState(0);
     const [routes] = useState([
-        { key: 'first', title: 'CHATS' },
+        {
+            key: 'first', title: 'CHATS',
+            unread_notifier: "1",
+        },
         { key: 'second', title: 'STATUS' },
         { key: 'third', title: 'CALLS' },
     ]);
@@ -296,9 +311,9 @@ const styles = StyleSheet.create({
     msg_container: {
         flexDirection: "row",
         alignItems: "center",
+        paddingEnd: moderateScale(10),
     },
     tabview: {
-        paddingHorizontal: moderateScale(10),
     },
     newchat_container: {
         backgroundColor: "#fff",
