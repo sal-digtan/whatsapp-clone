@@ -103,7 +103,10 @@ const ChatList = () => {
                         <Image source={item.img} resizeMode='contain' />
                         <View style={styles.chattext_container}>
                             <Text>{item.person}</Text>
-                            <Text>{item.msg}</Text>
+                            <View style={styles.msg_container}>
+                                <Image source={imagesPath.blue_tick} />
+                                <Text>{item.msg}</Text>
+                            </View>
                         </View>
                     </View>
                     <View style={styles.chattime_container}>
@@ -279,6 +282,10 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "center",
         flexDirection: "row",
+    },
+    msg_container: {
+        flexDirection: "row",
+        alignItems: "center",
     }
 
 })
