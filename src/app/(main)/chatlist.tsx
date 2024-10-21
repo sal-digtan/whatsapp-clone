@@ -196,6 +196,7 @@ const ChatList = () => {
                 onIndexChange={setIndex}
                 initialLayout={{ width: layout.width }}
                 renderTabBar={renderTabBar}
+                style={styles.tabview}
             />
         </SafeAreaView>
     )
@@ -219,6 +220,7 @@ const styles = StyleSheet.create({
     tab_barcontainer: {
         backgroundColor: '#008069',
         height: verticalScale(125),
+        paddingHorizontal: moderateScale(5),
     },
     icons_container: {
         flexDirection: "row",
@@ -267,25 +269,31 @@ const styles = StyleSheet.create({
     },
     chatlist_container: {
         flexDirection: "row",
-        alignItems: "flex-start",
+        alignItems: "center",
         justifyContent: "space-between",
+        paddingHorizontal: moderateScale(5),
+        marginBottom: moderateScale(20)
     },
     chattext_container: {
         justifyContent: "flex-start",
         alignItems: "flex-start",
     },
     chattime_container: {
-        justifyContent: "flex-end",
-        alignItems: "center",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
     },
     chatimg_container: {
         justifyContent: "flex-start",
         alignItems: "center",
         flexDirection: "row",
+        paddingTop: moderateVerticalScale(15),
     },
     msg_container: {
         flexDirection: "row",
         alignItems: "center",
+    },
+    tabview: {
+        paddingHorizontal: moderateScale(20),
     }
 
 })
