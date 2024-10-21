@@ -100,11 +100,11 @@ const ChatList = () => {
                 data={chatData}
                 renderItem={({ item }) => <View style={styles.chatlist_container}>
                     <View style={styles.chatimg_container}>
-                        <Image source={item.img} resizeMode='contain' />
+                        <Image source={item.img} resizeMode='contain' style={{ marginEnd: moderateScale(10) }} />
                         <View style={styles.chattext_container}>
                             <Text>{item.person}</Text>
                             <View style={styles.msg_container}>
-                                <Image source={imagesPath.blue_tick} />
+                                <Image source={imagesPath.blue_tick} resizeMode='contain' />
                                 <Text>{item.msg}</Text>
                             </View>
                         </View>
@@ -198,6 +198,11 @@ const ChatList = () => {
                 renderTabBar={renderTabBar}
                 style={styles.tabview}
             />
+            <View style={styles.newchat_container}>
+                <TouchableOpacity activeOpacity={0.8}>
+                    <Image source={imagesPath.newchat_icon} resizeMode='contain' />
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
     )
 }
@@ -293,7 +298,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     tabview: {
-        paddingHorizontal: moderateScale(20),
+        paddingHorizontal: moderateScale(10),
+    },
+    newchat_container: {
+        backgroundColor: "#fff",
+        justifyContent: "flex-end",
+        position: "absolute",
+        top: "93%",
+        left: "77%",
     }
 
 })
