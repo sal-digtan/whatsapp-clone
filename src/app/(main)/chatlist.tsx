@@ -186,11 +186,18 @@ const ChatList = () => {
                         indicatorStyle={{ backgroundColor: 'white' }}
                         style={{ backgroundColor: '#008069', elevation: 0 }}
                         renderIcon={({ route, focused, color, }) => (
-                            <View>
-                                <MaterialIcons
-                                    name={route.title === "CHATS" ? 'mark-chat-unread' : ""}
-                                    color={color}
-                                />
+                            <View style={{ flexDirection: "row" }}>
+                                <View>
+                                    <MaterialIcons
+                                        name={route.title === "CHATS" ? 'mark-chat-unread' : ""}
+                                        color={color}
+                                    />
+                                </View>
+                                <View>
+                                    <Entypo name={route.title === "STATUS" ? 'dot-single' : ""}
+                                        color={color}
+                                    />
+                                </View>
                             </View>
                         )}
                     />
