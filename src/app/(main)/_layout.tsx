@@ -6,6 +6,7 @@ const MainStack = () => {
         <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name='index' />
             <Stack.Screen name='chatlist' />
+            <Stack.Screen name='chatmsg' />
         </Stack>
     )
 }

@@ -131,20 +131,74 @@ const ChatList = () => {
     );
 
     const SecondRoute = () => (
-        <View style={{ flex: 1, backgroundColor: '#fff', alignItems: "center", justifyContent: "center", }}>
-            <ImageBackground source={imagesPath.chat_bg} resizeMode="cover" style={styles.image}></ImageBackground>
-            <Image source={imagesPath.nochatlogo} resizeMode='contain' style={styles.nochat_logo} />
-            <Text style={styles.nochat_text}>You haven’t chat yet</Text>
-            <ButtonComp title="Start Chatting" style={[styles.start_chatbtn, styles.chatbtn_text]} />
+        <View style={{ flex: 1, backgroundColor: '#fff', alignItems: "flex-start", justifyContent: "flex-start" }}>
+            <FlatList
+                data={chatData}
+                renderItem={({ item }) => <View style={styles.chatlist_container}>
+                    <View style={styles.chatimg_container}>
+                        <Image source={item.img} resizeMode='contain' style={{ marginEnd: moderateScale(10) }} />
+                        <View style={styles.chattext_container}>
+                            <Text>{item.person}</Text>
+                            <View style={styles.msg_container}>
+                                <Image source={imagesPath.blue_tick} resizeMode='contain' style={{ paddingStart: moderateScale(10) }} />
+                                <Text>{item.msg}</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.chattime_container}>
+                        <Text style={{ paddingEnd: moderateScale(50) }}>{item.time}</Text>
+                        <View style={{
+                            backgroundColor: "#036A01",
+                            width: moderateScale(22),
+                            height: moderateScale(22),
+                            alignItems: "center",
+                            justifyContent: "center",
+                            borderRadius: moderateScale(22),
+                        }}>
+                            <Text style={{ color: "#000" }}>
+                                {item.unread_items}
+                            </Text>
+                        </View>
+                    </View>
+                </View>}
+                keyExtractor={item => item.id}
+            />
         </View>
     );
 
     const ThirdRoute = () => (
-        <View style={{ flex: 1, backgroundColor: '#fff', alignItems: "center", justifyContent: "center", }}>
-            <ImageBackground source={imagesPath.chat_bg} resizeMode="cover" style={styles.image}></ImageBackground>
-            <Image source={imagesPath.nochatlogo} resizeMode='contain' style={styles.nochat_logo} />
-            <Text style={styles.nochat_text}>You haven’t chat yet</Text>
-            <ButtonComp title="Start Chatting" style={[styles.start_chatbtn, styles.chatbtn_text]} />
+        <View style={{ flex: 1, backgroundColor: '#fff', alignItems: "flex-start", justifyContent: "flex-start" }}>
+            <FlatList
+                data={chatData}
+                renderItem={({ item }) => <View style={styles.chatlist_container}>
+                    <View style={styles.chatimg_container}>
+                        <Image source={item.img} resizeMode='contain' style={{ marginEnd: moderateScale(10) }} />
+                        <View style={styles.chattext_container}>
+                            <Text>{item.person}</Text>
+                            <View style={styles.msg_container}>
+                                <Image source={imagesPath.blue_tick} resizeMode='contain' style={{ paddingStart: moderateScale(10) }} />
+                                <Text>{item.msg}</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.chattime_container}>
+                        <Text style={{ paddingEnd: moderateScale(50) }}>{item.time}</Text>
+                        <View style={{
+                            backgroundColor: "#036A01",
+                            width: moderateScale(22),
+                            height: moderateScale(22),
+                            alignItems: "center",
+                            justifyContent: "center",
+                            borderRadius: moderateScale(22),
+                        }}>
+                            <Text style={{ color: "#000" }}>
+                                {item.unread_items}
+                            </Text>
+                        </View>
+                    </View>
+                </View>}
+                keyExtractor={item => item.id}
+            />
         </View>
     );
 
