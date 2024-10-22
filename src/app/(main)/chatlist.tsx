@@ -185,6 +185,14 @@ const ChatList = () => {
                         {...props}
                         indicatorStyle={{ backgroundColor: 'white' }}
                         style={{ backgroundColor: '#008069', elevation: 0 }}
+                        renderIcon={({ route, focused, color, }) => (
+                            <View>
+                                <MaterialIcons
+                                    name={route.title === "CHATS" ? 'mark-chat-unread' : ""}
+                                    color={color}
+                                />
+                            </View>
+                        )}
                     />
                 </View>
             </View>
@@ -196,8 +204,10 @@ const ChatList = () => {
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         {
-            key: 'first', title: 'CHATS',
-            unread_notifier: "1",
+            key: 'first',
+            title: 'CHATS',
+            icon: 'mark-chat-unread'
+
         },
         { key: 'second', title: 'STATUS' },
         { key: 'third', title: 'CALLS' },
@@ -258,7 +268,7 @@ const styles = StyleSheet.create({
     },
     tabbar: {
         width: scale(300),
-        marginStart: moderateScale(13)
+        marginStart: moderateScale(13),
     },
     image: {
         flex: 1,
