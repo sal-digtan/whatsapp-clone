@@ -95,7 +95,7 @@ const ChatList = () => {
     const showMenu = () => setVisible(true);
 
     const FirstRoute = () => (
-        <View style={{ flex: 1, backgroundColor: '#fff', alignItems: "flex-start", justifyContent: "flex-start", }}>
+        <View style={{ flex: 1, backgroundColor: '#fff', alignItems: "flex-start", justifyContent: "flex-start" }}>
             <FlatList
                 data={chatData}
                 renderItem={({ item }) => <View style={styles.chatlist_container}>
